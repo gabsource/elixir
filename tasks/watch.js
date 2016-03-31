@@ -15,6 +15,9 @@ var Elixir = require('laravel-elixir');
  */
 gulp.task('watch', function() {
     var tasks = _.sortBy(Elixir.tasks, 'name');
+    var options = {
+        interval: 1000
+    };
 
     // Browserify uses a special watcher, so we'll
     // hook into that option, only for gulp watch.
@@ -38,6 +41,6 @@ gulp.task('watch', function() {
             return true;
         })
         .forEach(function(task) {
-            gulp.watch(task.watchers, [task.name]);
+            gulp.watch(task.watchers, options, [task.name]);
         });
 });
